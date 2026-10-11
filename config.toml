@@ -1,0 +1,42 @@
+[acoustic]
+sr = 16000
+n_fft = 512
+win_len = 512
+hop_len = 256
+win_type = "sqrthann"
+
+[model]
+dim_input = 2
+dim_output_spch = 2
+dim_output_CTF = 120
+dim_hidden = 96
+dim_squeeze = 8
+num_freqs = 257
+num_layers_spch = 6
+num_layers_noise = 2
+num_layers_CTF = 6
+encoder_kernel_size = 5
+dropout = [0, 0, 0]
+kernel_size = [5, 3]
+conv_groups = [8, 8]
+norms = ["LN", "LN", "LN", "LN", "LN", "LN"]
+full_share = 0
+attention = "mamba(16,4)"
+
+[pim]
+sr = 16000
+
+[vem]
+CTF_len = 30
+errvar_init = 1
+max_steps = 100
+min_steps = 0
+eda_factor_mu = 0.7
+eda_factor_var = 0.7
+eda_factor_CTF = 0.0
+eda_factor_ErrVar = 0.0
+
+[mint]
+rir_len = 1024
+inverse_len = 512
+reg = 0.001
